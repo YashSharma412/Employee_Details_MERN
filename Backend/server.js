@@ -1,7 +1,7 @@
 const express = require('express');
 const clc = require("cli-color");
 require("dotenv").config();
-// var cors = require('cors');
+var cors = require('cors');
 
 // File Imports
 const db = require("./database");
