@@ -6,7 +6,7 @@ function App() {
   const [jokes, setJokes] = useState([]);
   async function getJoke() {
     // console.log("call goes here");
-    axios.get("/api/jokes")
+    axios.get("https://employee-details-mern.onrender.com/api/jokes")
     .then(res => {
       console.log(res.data);
       setJokes(res.data);
