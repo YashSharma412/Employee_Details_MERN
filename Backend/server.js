@@ -13,7 +13,7 @@ var errMsg = clc.redBright.bold;
 var notice = clc.blueBright.bold;
 var warn = clc.yellowBright.bold;
 
-Middlewares
+// Middlewares
 app.use(cors(
     {
       origin: ["https://employee-details-kqpd.onrender.com", "https://employee-details-mern.onrender.com/"],
