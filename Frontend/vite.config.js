@@ -5,8 +5,12 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   server: {
     proxy: {
-      "/api": "https://employee-details-kqpd.onrender.com",
-      // "/api": "http://localhost:3000",
+      // "/api": "https://employee-details-kqpd.onrender.com",
+      '/api': {
+        target: 'https://employee-details-mern.onrender.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
     }
   },
   plugins: [react()],

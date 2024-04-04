@@ -1,7 +1,7 @@
 const express = require('express');
 const clc = require("cli-color");
 require("dotenv").config();
-var cors = require('cors');
+// var cors = require('cors');
 
 // File Imports
 const db = require("./database");
@@ -14,13 +14,13 @@ var notice = clc.blueBright.bold;
 var warn = clc.yellowBright.bold;
 
 // Middlewares
-app.use(cors(
-    {
-      origin: ["https://employee-details-kqpd.onrender.com"],
-      methods: ["GET", "POST"],
-      credentials: true
-    }
-  ))
+// app.use(cors(
+//     {
+//       origin: ["https://employee-details-kqpd.onrender.com"],
+//       methods: ["GET", "POST"],
+//       credentials: true
+//     }
+//   ))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
