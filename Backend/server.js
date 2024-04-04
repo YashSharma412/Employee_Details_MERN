@@ -16,7 +16,7 @@ var warn = clc.yellowBright.bold;
 // Middlewares
 app.use(cors(
     {
-      origin: ["https://employee-details-kqpd.onrender.com", "https://employee-details-mern.onrender.com/"],
+      origin: ["https://employee-details-kqpd.onrender.com", "https://employee-details-mern.onrender.com", "http://localhost:5173"],
       methods: ["GET", "POST"],
       credentials: true
     }
@@ -35,20 +35,4 @@ app.get("/", (req, res)=>{
         status: 200,
         error: false
     });
-})
-
-app.get("/api/jokes", (req, res)=>{
-    const jokes = [
-        {
-            "id": 1,
-            "title": "A joke",
-            "content": "this is a joke"
-        },
-        {
-            "id": 2,
-            "title": "Another joke",
-            "content": "this is another joke"
-        },
-    ];
-    res.send(jokes);
 })

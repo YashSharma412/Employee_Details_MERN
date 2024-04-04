@@ -1,34 +1,19 @@
-import { useState } from "react";
+import BASE_URL from "./URL/BASE_URL";
 import axios from "axios";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
 
+import LoginPage from "./Pages/LoginPage";
+import DashboardPage from "./Pages/DashboardPage";
+import SignInPage from "./Pages/SignInPage";
 function App() {
-  const [jokes, setJokes] = useState([]);
-  async function getJoke() {
-    // console.log("call goes here");
-    axios.get(`${process.env.BASE_URL}/api/jokes`)
-    .then(res => {
-      console.log(res.data);
-      setJokes(res.data);
-    })
-    .catch(err =>{
-      console.error(err);
-    })
-  }
-
   return (
     <>
-      <p>Home page</p>
-      <p>Jokes Count: {jokes.length}</p>
-      <button onClick={getJoke}>Get Joke</button>
-      <ul>
-        {jokes.map((joke) => (
-          <li key={joke.id}>
-            <h4>{joke.title}</h4>
-            <p>{joke.content}</p>
-          </li>
-        ))}
-      </ul>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/signin" element={<SignInPage />} />
+      </Routes>
     </>
   );
 }
