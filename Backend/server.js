@@ -13,14 +13,14 @@ var errMsg = clc.redBright.bold;
 var notice = clc.blueBright.bold;
 var warn = clc.yellowBright.bold;
 
-// Middlewares
-// app.use(cors(
-//     {
-//       origin: ["https://employee-details-kqpd.onrender.com"],
-//       methods: ["GET", "POST"],
-//       credentials: true
-//     }
-//   ))
+Middlewares
+app.use(cors(
+    {
+      origin: ["https://employee-details-kqpd.onrender.com", "https://employee-details-mern.onrender.com/"],
+      methods: ["GET", "POST"],
+      credentials: true
+    }
+  ))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
