@@ -42,7 +42,7 @@ a h4 {
   font-weight: 700;
 }
 
-input {
+input[type="text"], input[type="password"], input[type="email"]{
   display: block;
   height: 45px;
   box-sizing: border-box;
@@ -52,6 +52,17 @@ input {
   outline: none;
   border: var(--Border);
   margin-bottom: 18px;
+}
+
+select{
+  display: inline-block;
+  height: 45px;
+  width: 150px;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  border-radius: 6px;
+  outline: none;
+  border: var(--Border);
 }
 h1 {
   font-size: 2em;

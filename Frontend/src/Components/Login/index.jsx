@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./styles.css"
-import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../URL/BASE_URL";
+import UserContext from "../../Context/User/UserContext";
+
 function Login() {
   const navigate = useNavigate();
+  const {user, setUser} = useContext(UserContext)
   const [userCredentials, setUserCredentials] = useState(() => {
     return {
       loginId: "",
@@ -14,8 +17,11 @@ function Login() {
   const [displayMsg, setDisplayMsg] = useState(()=>{
     return {msg: "", color: "red"}
   });
+  useEffect(()=>{
+    console.log("user logged in: ", user);
+  }, [user])
 
-  async function handleSubmit(event) {
+  async function handleLogin(event) {
     event.preventDefault();
     // console.log(userCredentials);
     if(userCredentials.loginId === "") {
@@ -43,6 +49,7 @@ function Login() {
         setTimeout(()=>{
           setDisplayMsg({...displayMsg, msg: ""})
           // navigate to profile page
+          setUser(response.data.data)
           navigate("/dashboard");
         }, 700);
         setUserCredentials({loginId: "", password: "",})
@@ -61,7 +68,7 @@ function Login() {
     <section className="signIn-container">
       <h5>Welcome back! 👋</h5>
       <h1>Log in to your account</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <div className="input-container">
           <label htmlFor="email">Your loginId</label>
           <input

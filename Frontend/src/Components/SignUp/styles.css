@@ -1,0 +1,138 @@
+.signUp-container {
+    padding: 1.5rem 2.5rem;
+    border-radius: 4px;
+    box-shadow: 0px 6px 8px 0px rgba(0, 0, 0, 0.05);
+    min-width: 600px;
+    max-width: 950px;
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: rgba(239, 146, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border: 1px solid rgba(239, 146, 255, 0.4);
+}
+
+.signUp-container .left {
+    flex: 1;
+    padding-right: 2rem;
+    border-right: 3px solid rgba(50, 15, 70, 0.281);
+}
+
+.formBody {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signUp-container aside {
+    flex: 1;
+    padding-left: 2rem;
+}
+
+.signUp-container>h5 {
+    text-align: start;
+    color: #757575;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.signUp-container>h1 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.signUp-container label {
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+    text-align: start;
+}
+
+.signUp-container button {
+    width: 100%;
+    padding: 10px 0;
+    margin: 2rem 0 0.5rem 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #625bf7 0%, #463eea 100%);
+    border: none;
+    cursor: pointer;
+}
+
+.msgDisplay {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.roleSelect, .radio_label{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+}
+.radio_label{
+    padding-top: 0.5rem;
+
+}
+.submitBtn{
+    max-width: 500px;
+}
+
+.departmentSelect{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+}
+
+.password-container{
+    position: relative;
+}
+
+.password__eye_cont{
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+    bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .formBody{
+         flex-direction: column;
+    }
+    .signUp-container{
+        min-width: 300px;
+         width: 90%;
+         margin: auto;
+    }
+    .signUp-container aside {
+        border: none;
+        padding: 0rem 0rem 0rem 0rem;
+        width: 100%;
+
+    }
+    .signUp-container .left{
+         padding: 0rem 0rem 0rem 0rem;
+         width: 100%;
+    }
+
+}
