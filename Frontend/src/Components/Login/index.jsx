@@ -42,7 +42,7 @@ function Login() {
       const response = await axios.post(`${BASE_URL}/api/auth/login`, {
         loginId: userCredentials.loginId,
         password: userCredentials.password,
-      });
+      }, { withCredentials: true });
       console.log(response.data);
       if(response.status === 200) {
         setDisplayMsg({msg: response.data.msg, color: "green"});

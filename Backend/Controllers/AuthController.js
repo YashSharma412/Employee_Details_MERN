@@ -1,6 +1,5 @@
-const express = require("express");
 const clc = require("cli-color");
-const AuthRouter = express.Router();
+const mongoose = require("mongoose");
 
 // Constants
 var errMsg = clc.redBright.bold;
@@ -10,9 +9,9 @@ var warn = clc.yellowBright.bold;
 //! Helper functions import
 const ValidateSignUpDetails = require("../Functions/ValidateSignUpDetails");
 const User = require("../Models/UserModel");
-const isAuth = require("../Middlewares/isAuthMiddleware");
+const sessionModel = require("../Schemas/SessionSchema");
 
-AuthRouter.post("/signup", async (req, res) => {
+const signInFunc = async (req, res) => {
   const { name, email, username, password, role, department } = req.body;
 
   //todo 1: Validate Signup Details
@@ -75,9 +74,10 @@ AuthRouter.post("/signup", async (req, res) => {
       error: err,
     });
   }
-});
+}
 
-AuthRouter.post("/login", async (req, res) => {
+
+const logInFunc = async (req, res) => {
   const { loginId, password } = req.body;
   //todo 1: Validating data:
   if (!loginId || !password) {
@@ -93,13 +93,6 @@ AuthRouter.post("/login", async (req, res) => {
     const userFound = await User.findUserInDB({ key: loginId });
 
     //todo 3: Compare passwords
-    //  const isMatch = await bcrypt.compare(password, userDb.password);
-    // if (!isMatch) {
-    // return res.send({
-    //     status: 400,
-    //     message: "Password does not matched",
-    // });
-    // }
     if (userFound.password !== password) {
       return res.status(400).json({
         status: 400,
@@ -119,7 +112,6 @@ AuthRouter.post("/login", async (req, res) => {
       department: userFound.department,
       name: userFound.name,
     };
-    //req.session.req_time='first'
 
     return res.status(200).json({
       status: 200,
@@ -134,10 +126,9 @@ AuthRouter.post("/login", async (req, res) => {
       error: err,
     });
   }
-});
+}
 
-AuthRouter.post("/logout", isAuth, (req, res) => {
-  // console.log(req.session.id);
+const logOutFunc = async (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       return res.status(500).json({
@@ -152,6 +143,26 @@ AuthRouter.post("/logout", isAuth, (req, res) => {
       message: "Logout successfull",
     });
   });
-});
+}
 
-module.exports = AuthRouter;
+const logOutAllDevices = async(req, res) =>{
+  const username = req.session.user.username;
+  try{
+    const deleteDocsList = await sessionModel.deleteMany({
+      "session.user.username" : username,
+    })
+    return res.status(200).json({
+      status: 200,
+      message: "Logged out successfully from all devices",
+      data: deleteDocsList,
+    })
+  } catch (err){
+    return res.status(500).json({
+      status: 500,
+      message: "Server Error",
+      error: err,
+    })
+  }
+}
+
+module.exports = {signInFunc, logInFunc, logOutFunc, logOutAllDevices};
