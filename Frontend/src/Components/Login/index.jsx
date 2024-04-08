@@ -4,10 +4,13 @@ import axios from "axios";
 import "./styles.css"
 import BASE_URL from "../../URL/BASE_URL";
 import UserContext from "../../Context/User/UserContext";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa6";
 
 function Login() {
   const navigate = useNavigate();
   const {user, setUser} = useContext(UserContext)
+  const [passwordVisible, setpasswordVisible] = useState(false);
   const [userCredentials, setUserCredentials] = useState(() => {
     return {
       loginId: "",
@@ -67,7 +70,7 @@ function Login() {
   return (
     <section className="signIn-container">
       <h5>Welcome back! 👋</h5>
-      <h1>Log in to your account</h1>
+      <h1 className="header">Log in to your account</h1>
       <form onSubmit={handleLogin}>
         <div className="input-container">
           <label htmlFor="email">Your loginId</label>
@@ -85,11 +88,17 @@ function Login() {
             value={userCredentials.loginId}
           />
         </div>
-
-        <div className="input-container">
-          <label htmlFor="password">Your Password</label>
+        <div className="input-container password-container">
+          <div className="password__eye_cont" onClick={()=>setpasswordVisible(!passwordVisible)}>
+            {
+              passwordVisible ? 
+              <FaEye /> : 
+              <FaEyeSlash />
+            }
+          </div>
+          <label htmlFor="password">Enter a strong Password: </label>
           <input
-            type="password"
+            type={passwordVisible?"text":"password"}
             id="password"
             name="password"
             placeholder="Enter password"

@@ -7,7 +7,8 @@ const mongoDbSession = require("connect-mongodb-session")(session);
 
 //! File Imports
 const db = require("./database");
-const authRouter= require("./Routes/authRoutes");
+const authRoutes= require("./Routes/authRoutes");
+const userRoutes= require("./Routes/userRoutes");
 
 //! Constatnts
 const app = express();
@@ -49,7 +50,8 @@ app.use(express.json());
 app.use(session(sessionObject));
 
 //! Routes
-app.use("/api/auth", authRouter);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes)
 
 app.listen(PORT, () => {
   console.log(notice(`~~~ Server listeneing on port: ${PORT} ~~~`));

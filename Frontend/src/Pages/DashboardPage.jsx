@@ -1,21 +1,12 @@
 import React from 'react'
-import axios from 'axios';
-import BASE_URL from '../URL/BASE_URL';
+import Navbar from '../Components/Navbar'
 
 const DashboardPage = () => {
-  async function handleTest(){
-    try{
-      const response = await axios(`${BASE_URL}/api/test1`);
-      console.log(response.data)
-    } catch(e){
-      console.log(e.response)
-    }
-  }
   return (
     <div>
-      <button onClick={handleTest}></button>
+      <Navbar />
     </div>
   )
 }
 
-export default DashboardPage
+export default DashboardPage;

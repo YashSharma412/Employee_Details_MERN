@@ -1,7 +1,5 @@
-const clc = require("cli-color");
-const mongoose = require("mongoose");
-
 // Constants
+const clc = require("cli-color");
 var errMsg = clc.redBright.bold;
 var notice = clc.blueBright.bold;
 var warn = clc.yellowBright.bold;
@@ -13,7 +11,6 @@ const sessionModel = require("../Schemas/SessionSchema");
 
 const signInFunc = async (req, res) => {
   const { name, email, username, password, role, department } = req.body;
-
   //todo 1: Validate Signup Details
   try {
     await ValidateSignUpDetails({
